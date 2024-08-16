@@ -144,3 +144,6 @@ Provide the git url and Jenkinsfile path
 
 
 
+Now select the job and click on build now:
+![image](https://github.com/user-attachments/assets/fc36d031-fe2a-409d-88b2-5b0fc8d0c8f1)
+
