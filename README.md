@@ -1,6 +1,4 @@
-# Jenkins-Zero-To-Hero
-
-Are you looking forward to learn Jenkins right from Zero(installation) to Hero(Build end to end pipelines)? then you are at the right place. 
+# Install Jenkins on EC2 instance
 
 ## Installation on EC2 Instance
 
@@ -105,7 +103,7 @@ Jenkins Installation is Successful. You can now starting using the Jenkins
 Wait for the Jenkins to be restarted.
 
 
-## Docker Slave Configuration
+## Docker Slave Configuration( On same EC2 instance install docker)
 
 Run the below command to Install Docker
 
