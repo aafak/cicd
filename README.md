@@ -129,5 +129,18 @@ http://<ec2-instance-public-ip>:8080/restart
 
 The docker agent configuration is now successful.
 
+# Now Configure the new job:
+GO to http://jenkins-server-ip:8080/view/all/newJob
+- Select pipeline
+
+![image](https://github.com/user-attachments/assets/77f44678-5a91-44f9-9ce5-d1354aa12c81)
+
+
+Provide the git url and Jenkinsfile path
+
+
+
+![image](https://github.com/user-attachments/assets/4ac71e0e-fb2a-4b16-b1ca-310fadde2d7c)
+
 
 
