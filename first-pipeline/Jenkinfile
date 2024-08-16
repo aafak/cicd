@@ -1,7 +1,7 @@
 pipeline{
   agent{
     docker {
-      image 'python:3.11-alpine'
+      image 'image 'node:16-alpine''
       args '--user root -v /var/run/docker.sock:/var/run/docker.sock'
     }
   }
@@ -9,7 +9,7 @@ pipeline{
   stages{
     stage('Test stage'){
       steps {
-      sh 'python --version'
+      sh 'node --version'
       }
     }
   }
