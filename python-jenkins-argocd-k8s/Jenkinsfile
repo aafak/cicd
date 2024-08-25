@@ -20,6 +20,7 @@ pipeline {
             steps{
                 script{
                     sh '''
+                    ls -lrth
                     echo 'Buid Docker Image'
                     docker build -t aafak/cicd-e2e:${BUILD_NUMBER} .
                     '''
