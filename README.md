@@ -152,7 +152,9 @@ Now select the job and click on build now:
 ![image](https://github.com/user-attachments/assets/fc36d031-fe2a-409d-88b2-5b0fc8d0c8f1)
 
 
-Add the credntials and refer to jenkins file
+
+Add the credentials and refer to jenkins file:
+
 ![image](https://github.com/user-attachments/assets/fdf66e55-db01-4b33-9793-ca5314a1a8ff)
 
 
