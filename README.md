@@ -186,3 +186,5 @@ Password: The Personal Access Token (PAT) you generated.
 For every tow minute : H(0-29)/2 * * * *
 To schedule a build at a specific time, such as 2 AM every night, use: H 2 * * *
 To schedule a build to run at midnight every night: H 0 * * *
+![image](https://github.com/user-attachments/assets/14093c9d-aa42-4169-8f60-35c2395e6619)
+
