@@ -181,3 +181,8 @@ Password: The Personal Access Token (PAT) you generated.
 
 ![image](https://github.com/user-attachments/assets/cec061fe-5d41-40f4-a410-18110d90a0f3)
 
+
+# Schedules triggers in jenkins
+For every tow minute : H(0-29)/2 * * * *
+To schedule a build at a specific time, such as 2 AM every night, use: H 2 * * *
+To schedule a build to run at midnight every night: H 0 * * *
