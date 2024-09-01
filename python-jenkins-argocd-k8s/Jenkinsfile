@@ -11,6 +11,7 @@ pipeline {
         
         stage('Checkout'){
            steps {
+                git credentialsId: 'git-cred',
                 url: 'https://github.com/aafak/cicd',
                 branch: 'main'
            }
