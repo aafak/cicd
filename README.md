@@ -153,8 +153,31 @@ Now select the job and click on build now:
 
 
 
-Add the credentials and refer to jenkins file:
+# Add the credentials and refer to jenkins file:
 
 ![image](https://github.com/user-attachments/assets/fdf66e55-db01-4b33-9793-ca5314a1a8ff)
 
+
+
+# Update the Git Cred in jenkins and refere in jemkins file:
+
+Generate a Personal Access Token (PAT) on GitHub:
+
+Go to GitHub and navigate to Settings > Developer settings > Personal access tokens > Tokens (classic).
+Click on Generate new token.
+Select the necessary scopes/permissions, such as repo for full control of private repositories.
+Generate the token and copy it (you won't be able to view it again).
+
+![image](https://github.com/user-attachments/assets/1e836813-1fe6-4451-a2e2-faee17c9dbb3)
+
+
+
+# Update Jenkins Credentials:
+
+Go to your Jenkins instance and navigate to Manage Jenkins > Manage Credentials.
+Find the credential that corresponds to your GitHub credentials and update it:
+Username: Your GitHub username.
+Password: The Personal Access Token (PAT) you generated.
+
+![image](https://github.com/user-attachments/assets/cec061fe-5d41-40f4-a410-18110d90a0f3)
 
