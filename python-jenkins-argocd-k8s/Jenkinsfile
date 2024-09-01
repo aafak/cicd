@@ -24,7 +24,7 @@ pipeline {
                     def commitHash = sh(script: 'git rev-parse --short HEAD', returnStdout: true).trim()
                     env.COMMIT_HASH = commitHash
                     sh '''
-                    echo 'Git hash ${COMMIT_HASH}'
+                    echo ${COMMIT_HASH}
                     '''
                 }
             }
