@@ -153,13 +153,13 @@ Now select the job and click on build now:
 
 
 
-# Add the credentials and refer to jenkins file:
+# Add the docker credentials and refer to jenkins file:
 
 ![image](https://github.com/user-attachments/assets/fdf66e55-db01-4b33-9793-ca5314a1a8ff)
 
 
 
-# Update the Git Cred in jenkins and refere in jemkins file:
+# Add the GitHub credentials and refer in jenkins file:
 
 Generate a Personal Access Token (PAT) on GitHub:
 
