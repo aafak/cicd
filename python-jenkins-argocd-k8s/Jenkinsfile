@@ -11,7 +11,6 @@ pipeline {
         
         stage('Checkout'){
            steps {
-                git credentialsId: 'f87a34a8-0e09-45e7-b9cf-6dc68feac670', 
                 url: 'https://github.com/aafak/cicd',
                 branch: 'main'
            }
@@ -24,7 +23,7 @@ pipeline {
                     ls -lrth
                     cd ./python-jenkins-argocd-k8s
                     echo 'Buid Docker Image'
-                    docker build -t aafak/cicd-e2e:${BUILD_NUMBER} .
+                    docker build -t aafak/todo-app:${BUILD_NUMBER} .
                     '''
                 }
             }
@@ -36,7 +35,7 @@ pipeline {
                     sh '''
                     echo 'Push to Repo'
                     docker login -u ${DOCKER_CREDENTIALS_USR} -p ${DOCKER_CREDENTIALS_PSW}
-                    docker push aafak/cicd-e2e:${BUILD_NUMBER}
+                    docker push aafak/todo-app:${BUILD_NUMBER}
                     '''
                 }
             }
@@ -44,7 +43,7 @@ pipeline {
         
         stage('Checkout K8S manifest SCM'){
             steps {
-                git credentialsId: 'f87a34a8-0e09-45e7-b9cf-6dc68feac670', 
+                git credentialsId: 'git-cred',
                 url: 'https://github.com/aafak/cicd-demo-manifests-repo.git',
                 branch: 'main'
             }
@@ -53,8 +52,11 @@ pipeline {
         stage('Update K8S manifest & push to Repo'){
             steps {
                 script{
-                    withCredentials([usernamePassword(credentialsId: 'f87a34a8-0e09-45e7-b9cf-6dc68feac670', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
+                    withCredentials([usernamePassword(credentialsId: 'git-cred', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
                         sh '''
+                        ls -ltrh
+                        cd deploy
+                        ls -ltrh
                         cat deploy.yaml
                         sed -i '' "s/32/${BUILD_NUMBER}/g" deploy.yaml
                         cat deploy.yaml
