@@ -17,14 +17,30 @@ pipeline {
            }
         }
 
+        stage('Get Git Commit Hash') {
+            steps {
+                script {
+                    // Retrieve the latest Git commit hash
+                    def commitHash = sh(script: 'git rev-parse --short HEAD', returnStdout: true).trim()
+                    env.COMMIT_HASH = commitHash
+                    sh '''
+                    echo 'Git hash ${COMMIT_HASH}'
+                    '''
+                }
+            }
+        }
+
         stage('Build Docker'){
             steps{
+                // Instead of using the build number, use git commit hash. because jenkins build number
+                // can be reset if jenkins redeploy
+                // docker build -t aafak/todo-app:${BUILD_NUMBER}
                 script{
                     sh '''
                     ls -lrth
                     cd ./python-jenkins-argocd-k8s
                     echo 'Buid Docker Image'
-                    docker build -t aafak/todo-app:${BUILD_NUMBER} .
+                    docker build -t aafak/todo-app:${COMMIT_HASH} .
                     '''
                 }
             }
@@ -36,7 +52,7 @@ pipeline {
                     sh '''
                     echo 'Push to Repo'
                     docker login -u ${DOCKER_CREDENTIALS_USR} -p ${DOCKER_CREDENTIALS_PSW}
-                    docker push aafak/todo-app:${BUILD_NUMBER}
+                    docker push aafak/todo-app:${COMMIT_HASH}
                     '''
                 }
             }
@@ -52,6 +68,9 @@ pipeline {
         
         stage('Update K8S manifest & push to Repo'){
             steps {
+
+               // for build number update
+               //  sed -i "s|image: aafak/todo-app:v[0-9][0-9]*|image: aafak/todo-app:v${BUILD_NUMBER}|g" deploy.yaml
                 script{
                     withCredentials([usernamePassword(credentialsId: 'git-cred', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
                         sh '''
@@ -59,7 +78,7 @@ pipeline {
                         cd deploy
                         ls -ltrh
                         cat deploy.yaml
-                        sed -i "s|image: aafak/todo-app:v[0-9][0-9]*|image: aafak/todo-app:v${BUILD_NUMBER}|g" deploy.yaml
+                        sed -i "s|image: aafak/todo-app:[a-f0-9]*|image: aafak/todo-app:${COMMIT_HASH}|g" deploy.yaml
                         cat deploy.yaml
                         git config user.email "aafak.mitsmca09@gmail.com"
                         git config user.name "aafak"
